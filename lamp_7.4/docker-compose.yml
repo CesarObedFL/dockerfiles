@@ -1,0 +1,63 @@
+version: "3.1"
+
+services:
+
+    web_server:
+        image: webdevops/php-apache:7.4-alpine
+        container_name: sgcweb_web_server_php74
+        restart: always
+        volumes:
+            - ./www:/var/www/
+        working_dir: /var/www/
+        networks:
+            - sgcweb-network
+        ports: 
+            - "8080:80"
+        expose:
+            - "80"
+        depends_on:
+            - database_server
+        links:
+            - database_server
+        
+    database_server:
+        image: mariadb:10.5
+        container_name: sgcweb_db_server
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'sgcweb_1025'
+            MYSQL_USER: 'ade'
+            MYSQL_PASSWORD: 'wNa932wUwM'
+            MYSQL_ROOT_PASSWORD: 'p3ga5u5'
+            MYSQL_ROOT_HOST: '%'
+        networks:
+            - sgcweb-network
+        ports: 
+            - "3366:3306"
+        expose:
+            - "3306"
+        command: --default-authentication-plugin=mysql_native_password
+        
+        volumes:
+            - ./dbvolume:/var/lib/mysql
+        
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: sgcweb_phpmyadmin_server
+        environment:
+            MYSQL_USER: ade
+            MYSQL_PASSWORD: wNa932wUwM
+            MYSQL_ROOT_PASSWORD: p3ga5u5
+        networks:
+            - sgcweb-network
+        ports:
+            - 8008:80
+        links: 
+            - database_server:db
+        
+volumes:
+    www:
+    dbvolume:
+
+networks:
+    sgcweb-network:
