@@ -3,10 +3,16 @@
 [Docker] v20.10.17 
 [Docker-Compose] v1.23.1
 
-Files of:
 
-- [Bagisto] : v1.5.1
-- LAMP : [Apache], MySQL ([MariaDB] v10.5), [phpMyAdmin], [PHP] v7.4
+- [Bagisto] v1.5.1
+    - [MySQL] v5.7 as database system
+
+- LAMP : 
+    - [Apache] as web server
+    - [MariaDB] v10.5 as database system
+    - [PHP] v7.4
+    - [phpMyAdmin]
+
 - Laravel : 
     - [Apache] v alpine:latest or [NGINX] v stable-alpine:latest as web server, 
     - [MySQL] v8.0.27 or [MariaDB] v10.5 as database system
