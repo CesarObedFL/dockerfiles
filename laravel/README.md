@@ -20,11 +20,11 @@ to change between apache or nginx and mysql or mariadb only comment and uncommen
 docker-compose up -d --build
 ```
 
-to run a terminal interface :  `docker compose run --rm php /bin/sh`
-to create a project vía composer : `docker compose run --rm composer create-project laravel/laravel`
-to clone a project : clone the project normally inside the app_volume carpet and `docker compose run --rm composer install` or `composer update`
-to run artisan commands : `docker compose runu --rm artisan command`
-to give permission run a terminal and : `chown -R laravel:laravel /var/www`
+- to run a terminal interface :  `docker compose run --rm php /bin/sh`
+- to create a project vía composer : `docker compose run --rm composer create-project laravel/laravel`
+- to clone a project : clone the project normally inside the app_volume carpet and `docker compose run --rm composer install` or `composer update`
+- to run artisan commands : `docker compose runu --rm artisan command`
+- to give permission run a terminal and : `chown -R laravel:laravel /var/www`
 
 
 
