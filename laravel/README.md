@@ -4,12 +4,16 @@
 # Technologies
 
 [Docker], [Docker_Compose] with: 
-- [Apache] v alpine:latest or [NGINX] v stable-alpine:latest as web server, 
-- [MySQL] v8.0.27 or [MariaDB] v10.5 as database system
-- [PHP] v8.2-fpm-alpine
-- [composer] latest
-- [npm] v node:20-alpine
-- [mailpit] latest 
+- [PHP] : v8.2-fpm-alpine
+- [composer] : latest
+- Web Server :
+    - [Apache] : v alpine:latest
+    - [NGINX] : v stable-alpine:latest
+- Database System :
+    - [MySQL] : v8.0.27
+    - [MariaDB] : v10.5
+- [npm] : v node:20-alpine
+- [mailpit] : latest 
 - with the [alpine] images
 
 to change between apache or nginx and mysql or mariadb only comment and uncomment the docker-compose.yml file
