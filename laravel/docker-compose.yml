@@ -24,7 +24,7 @@ services:
   #  build:
   #    context: .
   #    dockerfile: apache.dockerfile
-  #  container_name: laravel_apache_container
+  #  container_name: laravel_server_apache_container
   #  ports:
   #    - 8008:80
   #    - 443:443
