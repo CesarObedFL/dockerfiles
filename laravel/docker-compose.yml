@@ -13,12 +13,12 @@ services:
     networks:
       - laravel-network
     ports:
-      - 8088:80
+      - 8008:80
     depends_on:
       - php
-      - mysql
+      - database
     links:
-      - mysql
+      - database
 
   #apache:
   #  build:
@@ -26,7 +26,7 @@ services:
   #    dockerfile: apache.dockerfile
   #  container_name: laravel_apache_container
   #  ports:
-  #    - 8088:80
+  #    - 8008:80
   #    - 443:443
   #  volumes:
   #    - ./app_volume:/var/www
@@ -34,9 +34,9 @@ services:
   #    - laravel-network
   #  depends_on:
   #    - php
-  #    - mysql
+  #    - database
   #  links:
-  #    - mysql
+  #    - database
 
   php:
     build:
@@ -48,7 +48,7 @@ services:
     networks:
       - laravel-network
 
-  mysql:
+  database:
     image: mysql:8.0.27
     container_name: laravel_database_container
     restart: always
@@ -63,11 +63,11 @@ services:
     networks:
       - laravel-network
     ports:
-      - 3336:3306
+      - 3366:3306
     expose:
       - '3306'
 
-  #mariadb:
+  #database:
   #  image: mariadb:10.5
   #  container_name: laravel_database_container
   #  restart: always
