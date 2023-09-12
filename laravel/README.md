@@ -26,10 +26,46 @@ docker-compose up -d --build
 
 - to run a terminal interface :  `docker compose run --rm php /bin/sh`
 - to create a project vía composer : `docker compose run --rm composer create-project laravel/laravel`
-- to clone a project : clone the project normally inside the app_volume carpet and `docker compose run --rm composer install` or `composer update`
-- to run artisan commands : `docker compose runu --rm artisan command`
+- to clone a project : clone the project normally inside the app_volume carpet 
+    - `git clone url-project`, then copy all the files, hidden files too, to the root of the app_volume carpet
+    - run `docker compose run --rm composer install` or `docker compose run --rm composer update`
+- to run artisan commands : `docker compose run --rm artisan command`
 - to give permission run a terminal and : `chown -R laravel:laravel /var/www`
 
+
+# laravel app configuration
+
+- in the root of the project, give permission to your os user to the db_volume and app_volume
+```
+sudo chown -R $USER:$USER app_volume
+sudo chown -R $USER:$USER db_volume
+```
+
+- configure the laravel's db connection, where the values are the same of the docker-compose file:
+    - docker compose file: 
+    ```
+    container_name: laravel_database_container
+    environment:
+        MYSQL_DATABASE: 'laravel_db'
+        MYSQL_USER: 'laravel_db_user'
+        MYSQL_PASSWORD: 'secret'
+        MYSQL_ROOT_PASSWORD: 'secret'
+        MYSQL_ROOT_HOST: '%'
+    ports: 
+        - "3366:3306"
+    ```
+    - Laravel .env file:
+    ```
+        DB_CONNECTION=mysql
+        DB_HOST=laravel_database_container
+        DB_PORT=3306
+        DB_DATABASE=laravel_db
+        DB_USERNAME=laravel_db_user
+        DB_PASSWORD=secret
+    ```
+- run `docker compose run --rm artisan key:generate`
+- run `docker compose run --rm artisan migrate --seed`
+- run `docker compose run --rm artisan storage:link`
 
 
 [Docker]:<https://docs.docker.com/>
