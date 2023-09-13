@@ -4,15 +4,15 @@ services:
 
     web_server:
         image: webdevops/php-apache:7.4-alpine
-        container_name: sgcweb_web_server_php74
+        container_name: web_server_php74
         restart: always
         volumes:
-            - ./www:/var/www/
+            - ./app_volume:/var/www/
         working_dir: /var/www/
         networks:
-            - sgcweb-network
+            - lamp74-network
         ports: 
-            - "8080:80"
+            - "8008:80"
         expose:
             - "80"
         depends_on:
@@ -22,16 +22,16 @@ services:
         
     database_server:
         image: mariadb:10.5
-        container_name: sgcweb_db_server
+        container_name: database_server
         restart: always
         environment:
-            MYSQL_DATABASE: 'sgcweb_1025'
-            MYSQL_USER: 'ade'
-            MYSQL_PASSWORD: 'wNa932wUwM'
-            MYSQL_ROOT_PASSWORD: 'p3ga5u5'
+            MYSQL_DATABASE: 'lamp_database'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'secret'
+            MYSQL_ROOT_PASSWORD: 'secret'
             MYSQL_ROOT_HOST: '%'
         networks:
-            - sgcweb-network
+            - lamp74-network
         ports: 
             - "3366:3306"
         expose:
@@ -39,25 +39,25 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         
         volumes:
-            - ./dbvolume:/var/lib/mysql
+            - ./db_volume:/var/lib/mysql
         
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: sgcweb_phpmyadmin_server
+        container_name: phpmyadmin_server
         environment:
-            MYSQL_USER: ade
-            MYSQL_PASSWORD: wNa932wUwM
-            MYSQL_ROOT_PASSWORD: p3ga5u5
+            MYSQL_USER: user
+            MYSQL_PASSWORD: secret
+            MYSQL_ROOT_PASSWORD: secret
         networks:
-            - sgcweb-network
+            - lamp74-network
         ports:
-            - 8008:80
+            - 8080:80
         links: 
             - database_server:db
         
 volumes:
-    www:
-    dbvolume:
+    app_volume:
+    db_volume:
 
 networks:
-    sgcweb-network:
+    lamp74-network:
