@@ -45,6 +45,9 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
+      args:
+        - UID=${UID}
+        - USER=${USER}
     container_name: laravel_php_container
     volumes:
       - ./app_volume:/var/www
@@ -104,6 +107,9 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
+      args:
+        - UID=${UID}
+        - USER=${USER}
     container_name: laravel_artisan_container
     volumes:
       - ./app_volume:/var/www
