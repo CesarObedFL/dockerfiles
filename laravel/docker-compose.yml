@@ -5,8 +5,10 @@ services:
     build:
       context: .
       dockerfile: nginx.dockerfile
+      args:
+        - UID=${UID}
+        - USER=${USER}
     container_name: laravel_server_nginx_container
-    restart: always
     volumes:
       - ./app_volume:/var/www
     working_dir: /var/www
@@ -25,13 +27,14 @@ services:
   #    context: .
   #    dockerfile: apache.dockerfile
   #  container_name: laravel_server_apache_container
-  #  ports:
-  #    - 8008:80
-  #    - 443:443
+  #  restart: always
   #  volumes:
   #    - ./app_volume:/var/www
+  #  working_dir: /var/www
   #  networks:
   #    - laravel-network
+  #  ports:
+  #    - 8008:80
   #  depends_on:
   #    - php
   #    - database
