@@ -4,15 +4,15 @@ services:
 
   web_server:
     image: webkul/apache-php:1.5.1
-    container_name: ceela_store_apache2
+    container_name: bagisto_web_server_container
     restart: always
     volumes:
-      - ./app:/var/www/html
+      - ./app_volume:/var/www/html
     working_dir: /var/www/html
     environment:
       USER_ID: 1003
     networks:
-      - ceela-network
+      - bagisto-network
     ports:
       - '8888:80'
     expose:
@@ -24,27 +24,27 @@ services:
 
   database_server:
     image: mysql:5.7
-    container_name: ceela_store_mysql
+    container_name: bagisto_database_container
     restart: always
     environment:
-      MYSQL_DATABASE: 'ceela_store_db'
-      MYSQL_USER: 'ceela_store_db_user'
-      MYSQL_PASSWORD: '12345'
-      MYSQL_ROOT_PASSWORD: '12345'
+      MYSQL_DATABASE: 'bagisto_db'
+      MYSQL_USER: 'bagisto_db_user'
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_ROOT_PASSWORD: 'secret'
       MYSQL_ROOT_HOST: '%'
     networks:
-      - ceela-network
+      - bagisto-network
     ports:
-      - '3333:3306'
+      - '33:3306'
     expose:
       - '3306'
     volumes:
-      - ./dbvolume:/var/lib/mysql
+      - ./db_volume:/var/lib/mysql
 
 volumes:
-  dbvolume:
-  app:
+  app_volume:
+  db_volume:
 
 networks:
-  ceela-network:
+  bagisto-network:
 

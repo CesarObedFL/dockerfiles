@@ -5,6 +5,8 @@ este repositorio docker se hizo con el propósito de desarrollar las funcionalid
 
 se hizo usando la imagen de [bagisto] oficial: [bagisto-imagen] en su última versión hasta el momento (v1.5.1)
 
+se debe modificar la variable del environtment `USER_ID: 1003` en el archivo docker-compose.yml acorde al usuario local del sistema en ejecución
+
 
 ## ejecución
 
