@@ -126,13 +126,13 @@ services:
       - laravel-network
 
   mailpit:
-      image: axllent/mailpit
-      container_name: laravel_mailpit_container
-      ports:
-        - "1025:1025"
-        - "8025:8025"
-      networks:
-        - laravel-network
+    image: axllent/mailpit
+    container_name: laravel_mailpit_container
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - laravel-network
 
 networks:
   laravel-network:
