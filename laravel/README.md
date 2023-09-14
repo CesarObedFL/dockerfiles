@@ -18,7 +18,16 @@
 
 to change between apache or nginx and mysql or mariadb only comment and uncomment the docker-compose.yml file
 
-## running with
+## deploying with
+
+before deploying iin linuex systems, you need to set the user and uid args to the docker-compose.yml file in php container & artisan container
+
+```
+args:
+    - UID=your_os_user_id
+    - USER=${USER} (your_user)
+
+```
 
 ```
 docker-compose up -d --build
