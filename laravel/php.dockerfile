@@ -34,5 +34,3 @@ RUN apk update && apk add --no-cache \
 
 #giving user permissions on the folder
 RUN chown -R laravel:laravel /var/www
-
-USER ${USER}
