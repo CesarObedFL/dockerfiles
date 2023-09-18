@@ -30,7 +30,7 @@ RUN apk update && apk add --no-cache \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ \
     --with-webp=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip calendar
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip calendar mysqli
 
 #giving user permissions on the folder
 RUN chown -R laravel:laravel /var/www
