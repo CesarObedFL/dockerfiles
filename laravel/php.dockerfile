@@ -10,7 +10,26 @@ RUN apk add nano openrc
 ARG USER
 ARG UID
 
-RUN addgroup -g ${UID} laravel && adduser -G laravel -g ${USER} -s /bin/sh -D laravel
+
+
+### nginx configuration ###
+RUN addgroup -g ${UID} laravel && adduser -G laravel -g ${USER} -s /bin/sh -D ${USER}
+# making working directory
+RUN mkdir -p /var/www
+#giving user permissions on the folder
+RUN chown -R ${USER}:laravel /var/www
+### /. nginx configuration ###
+
+
+
+### apache configuration ###
+RUN adduser -G www-data -u ${UID} -s /bin/sh -p secret ${USER}
+#giving user permissiions on the folder
+RUN chmod -R 775 /var/www
+RUN chown -R ${USER}:www-data /var/www
+### /. apache configuration ###
+
+
 
 # making working directory
 RUN mkdir -p /var/www
@@ -31,6 +50,3 @@ RUN apk update && apk add --no-cache \
     --with-jpeg=/usr/include/ \
     --with-webp=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip calendar mysqli
-
-#giving user permissions on the folder
-RUN chown -R laravel:laravel /var/www
