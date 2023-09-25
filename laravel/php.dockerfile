@@ -23,7 +23,7 @@ RUN chown -R ${USER}:laravel /var/www
 
 
 ### apache configuration ###
-RUN adduser -G www-data -u ${UID} -s /bin/sh -p secret ${USER}
+RUN adduser -G www-data -u ${UID} -s /bin/sh ${USER}
 #giving user permissiions on the folder
 RUN chmod -R 775 /var/www
 RUN chown -R ${USER}:www-data /var/www
