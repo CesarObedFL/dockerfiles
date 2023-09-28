@@ -36,7 +36,7 @@ docker-compose up -d --build
 - to run a terminal interface :  `docker compose run --rm php /bin/sh`
 - to create a project vía composer : `docker compose run --rm composer create-project laravel/laravel`
 - to clone a project : clone the project normally inside the app_volume carpet 
-    - `git clone url-project`, then copy all the files, hidden files too, to the root of the app_volume carpet
+    - `git clone url-project app_volume`, then copy all the files, hidden files too, to the root of the app_volume carpet
     - run `docker compose run --rm composer install` or `docker compose run --rm composer update`
 - to run artisan commands : `docker compose run --rm artisan command`
 - to give permission run a terminal and : `chown -R laravel:laravel /var/www`
