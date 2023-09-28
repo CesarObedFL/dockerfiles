@@ -11,24 +11,27 @@ ARG USER
 ARG UID
 
 
-
-### nginx configuration ###
+#############################
+#### nginx configuration ####
+#############################
 RUN addgroup -g ${UID} laravel && adduser -G laravel -g ${USER} -s /bin/sh -D ${USER}
 # making working directory
 RUN mkdir -p /var/www
 #giving user permissions on the folder
 RUN chown -R ${USER}:laravel /var/www
 ### /. nginx configuration ###
+##############################
 
 
-
-### apache configuration ###
+##############################
+#### apache configuration ####
+##############################
 RUN adduser -G www-data -u ${UID} -s /bin/sh -D -S ${USER}
 #giving user permissiions on the folder
 RUN chmod -R 775 /var/www
 RUN chown -R ${USER}:www-data /var/www
 ### /. apache configuration ###
-
+###############################
 
 
 # making working directory
@@ -45,8 +48,13 @@ RUN apk update && apk add --no-cache \
     freetype-dev \
     zlib-dev \
     libzip-dev \
-    && docker-php-ext-configure gd \
+    libsodium-dev \
+    && docker-php-ext-configure gd --enable-gd \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ \
     --with-webp=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip calendar mysqli
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip calendar mysqli bz2 sodium
+
+
+# change user to the user created
+USER ${USER}
