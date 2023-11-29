@@ -1,0 +1,19 @@
+{
+    "name": "api-name",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "serve": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "COFL",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.1"
+    },
+    "devDependencies": {
+        "dotenv": "^16.0.1",
+        "nodemon": "^3.0.1"
+    }
+}

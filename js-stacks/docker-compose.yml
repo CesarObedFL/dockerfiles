@@ -1,0 +1,87 @@
+version: "3"
+
+services:
+
+  vue:
+    build:
+      context: .
+      dockerfile: vue.dockerfile
+      args:
+        - UID=1003
+        - USER=${USER}
+    container_name: vue_container
+    volumes:
+      - ./app:/usr/src/app/app-ui
+      - /usr/src/app/app-ui/node_modules
+    networks:
+      - js-network
+    ports:
+      - 8001:8080
+
+
+  angular:
+    build:
+      context: .
+      dockerfile: angular.dockerfile
+      args:
+        - UID=1003
+        - USER=${USER}
+    container_name: angular_container
+    volumes:
+      - ./app:/usr/src/app/app-ui
+      - /usr/src/app/app-ui/node_modules
+    working_dir: /usr/src/app/app-ui
+    networks:
+      - js-network
+    ports:
+      - 4200:4200
+    
+
+  node-server:
+    build:
+      context: .
+      dockerfile: node.dockerfile
+      args:
+        - UID=1003
+        - USER=${USER}
+    container_name: node_api_container
+    volumes:
+      - ./api:/usr/src/app/api
+      - /usr/src/app/api/node_modules
+    networks:
+      - js-network
+    ports:
+      - 3080:3080
+    
+    #depends_on:
+    #  - database
+    #links:
+    #  - database
+
+  database:
+    image: mariadb:10.5
+    container_name: js_database_container
+    restart: always
+    volumes:
+        - ./db_volume:/var/lib/mysql
+    environment:
+        MYSQL_DATABASE: 'js_db'
+        MYSQL_USER: 'js_db_user'
+        MYSQL_PASSWORD: 'secret'
+        MYSQL_ROOT_PASSWORD: 'secret'
+        MYSQL_ROOT_HOST: '%'
+    networks:
+        - js-network
+    ports: 
+        - "3666:3306"
+    expose:
+        - "3306"
+    command: --default-authentication-plugin=mysql_native_password
+
+volumes:
+  api:
+  app:
+  db_volume:
+
+networks:
+  js-network:
