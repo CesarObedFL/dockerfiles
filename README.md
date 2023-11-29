@@ -22,18 +22,31 @@
     - [mailpit] latest 
     - with the [alpine] images
 
+- JS-Stacks
+    - [NodeJS] v node:20-alpine
+    - [Angular] v node:20-alpine
+    - [Vue] v node:20-alpine
+
 
 
 [Docker]:<https://docs.docker.com/>
 [Docker-Compose]:<https://docs.docker.com/compose/>
-[Bagisto]:<https://devdocs.bagisto.com/1.x/introduction/>
+
 [Apache]:<https://httpd.apache.org/>
 [NGINX]:<https://nginx.org/en/docs/>
+
 [MySQL]:<https://dev.mysql.com/doc/>
 [MariaDB]:<https://mariadb.org/>
+
 [PHP]:<https://www.php.net/manual/es/intro-whatis.php>
 [composer]:<https://getcomposer.org/>
 [phpMyAdmin]:<https://www.phpmyadmin.net/>
+[Bagisto]:<https://devdocs.bagisto.com/1.x/introduction/>
+
 [npm]:<https://docs.npmjs.com/>
+[NodeJS]:<https://nodejs.org/en/docs>
+[Angular]:<https://angular.io/docs>
+[Vue]:<https://vuejs.org/guide/introduction.html>
+
 [mailpit]:<https://github.com/axllent/mailpit>
 [alpine]:<https://www.alpinelinux.org/>
