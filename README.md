@@ -15,7 +15,7 @@
 
 - Laravel : 
     - [Apache] v alpine:latest or [NGINX] v stable-alpine:latest as web server, 
-    - [MySQL] v8.0.27 or [MariaDB] v10.5 as database system
+    - [MySQL] v8.0.27 or [MariaDB] v10.5 as database system and [phpMyAdmin]
     - [PHP] v8.2-fpm-alpine
     - [composer] latest
     - [npm] v node:20-alpine

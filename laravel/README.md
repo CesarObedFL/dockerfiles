@@ -42,6 +42,8 @@ docker-compose up -d --build
 - to run artisan commands : `docker compose run --rm artisan command`
 - to give permission run a terminal and : `chown -R laravel:laravel /var/www`
 
+Open phpmyadmin at [http://localhost:8088](http://localhost:8088)
+
 
 # laravel app configuration
 
