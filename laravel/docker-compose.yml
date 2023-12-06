@@ -90,6 +90,20 @@ services:
   #  expose:
   #      - "3306"
   #  command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel_phpmyadmin_server
+    environment:
+      MYSQL_USER: laravel_db_user
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - laravel-network
+    ports:
+      - 8088:80
+    links: 
+      - database:db
     
 
   composer:

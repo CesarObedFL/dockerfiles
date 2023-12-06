@@ -12,6 +12,7 @@
 - Database System :
     - [MySQL] : v8.0.27
     - [MariaDB] : v10.5
+    - [phpMyAdmin]
 - [npm] : v node:20-alpine
 - [mailpit] : latest 
 - with the [alpine] images
@@ -83,6 +84,7 @@ sudo chown -R $USER:$USER db_volume
 [NGINX]:<https://nginx.org/en/docs/>
 [MySQL]:<https://dev.mysql.com/doc/>
 [MariaDB]:<https://mariadb.org/>
+[phpMyAdmin]:<https://www.phpmyadmin.net/>
 [PHP]:<https://www.php.net/manual/es/intro-whatis.php>
 [composer]:<https://getcomposer.org/>
 [npm]:<https://docs.npmjs.com/>
