@@ -49,8 +49,13 @@ Open phpmyadmin at [http://localhost:8088](http://localhost:8088)
 
 - in the root of the project, give permission to your os user to the db_volume and app_volume
 ```
-sudo chown -R $USER:$USER app_volume
-sudo chown -R $USER:$USER db_volume
+sudo chown -R $USER:$USER \app_volume
+sudo chown -R $USER:$USER \db_volume
+```
+
+```
+sudo chmod -R 777 \app_volume
+sudo chmod -R 777 \db_volume
 ```
 
 - configure the laravel's db connection, where the values are the same of the docker-compose file:
