@@ -61,8 +61,10 @@ RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
 RUN docker-php-ext-configure gd --with-external-gd
 RUN docker-php-ext-install gd
 
+# add composer if necessary
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add the user to sudoers group
+# add the user to sudoers group
 RUN usermod -aG sudo $USER
 
 # Set sudo password to the user

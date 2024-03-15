@@ -13,6 +13,9 @@ RUN apk add nano openrc
 # to execute sudo: sudo -u <my-user> <my command>
 RUN set -ex && apk --no-cache add sudo 
 
+# set root password
+RUN echo 'root:12345' | chpasswd
+
 #############################
 #### nginx configuration ####
 #############################
@@ -35,6 +38,8 @@ RUN chown -R ${USER}:www-data /var/www
 ### /. apache configuration ###
 ###############################
 
+# set user password
+RUN echo $USER:'12345' | chpasswd
 
 # making working directory
 RUN mkdir -p /var/www
@@ -57,6 +62,11 @@ RUN apk update && apk add --no-cache \
     --with-webp=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip calendar mysqli bz2 sodium
 
+# add composer if necessary
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# add the user to sudoers group
+RUN echo "$USER ALL=(ALL) ALL" > /etc/sudoers.d/$USER && chmod 0440 /etc/sudoers.d/$USER
 
 # change user to the user created
 USER ${USER}
