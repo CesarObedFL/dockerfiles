@@ -3,13 +3,15 @@ FROM php:8.2-fpm-alpine
 # copy conf file to the container server configuration
 ADD ./php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
-#installing necessary programs in alpine
-RUN apk add nano openrc
-
 # getting docker-compose arguments 
 ARG USER
 ARG UID
 
+# installing necessary programs in alpine
+RUN apk add nano openrc
+
+# to execute sudo: sudo -u <my-user> <my command>
+RUN set -ex && apk --no-cache add sudo 
 
 #############################
 #### nginx configuration ####
