@@ -9,6 +9,7 @@ ARG UID
 
 # installing necessary programs in alpine
 RUN apk add nano openrc
+RUN apk add --no-cache --upgrade bash
 
 # to execute sudo: sudo -u <my-user> <my command>
 RUN set -ex && apk --no-cache add sudo 
