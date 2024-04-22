@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: nginx.dockerfile
     container_name: laravel_server_nginx_container
+    environment:
+      CLIENT_HEADER_TIMEOUT: 3000
+      CLIENT_BODY_TIMEOUT: 3000
+      CLIENT_MAX_BODY_SIZE: 32m
     volumes:
       - ./app_volume:/var/www
     working_dir: /var/www
