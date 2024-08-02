@@ -85,6 +85,15 @@ sudo chmod -R 777 \db_volume
 - run `docker compose run --rm artisan storage:link`
 
 
+# laravel scheduling cronjob/crontabs inside alpine linux
+
+- installing the dcron library : `sudo apk add dcron libcap --no-cache`
+- run a terminal interface :  `docker compose run --rm php /bin/sh`
+- inside the terminal :
+    - copy inside the file /etc/crontabs/root with sudo nano : `* * * * * cd /var/www && php artisan schedule:run >> /home/$USER/cron.txt`
+    - give permission on the files : `sudo chmod -R 777 /var/www`
+
+
 [Docker]:<https://docs.docker.com/>
 [Docker_Compose]:<https://docs.docker.com/compose/>
 [Apache]:<https://httpd.apache.org/>

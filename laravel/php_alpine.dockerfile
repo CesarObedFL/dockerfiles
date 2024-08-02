@@ -11,6 +11,12 @@ ARG UID
 RUN apk add nano openrc
 RUN apk add --no-cache --upgrade bash
 
+#installing dcron library for crontabs y cronjobs
+RUN apk add dcron libcap --no-cache
+
+# Copiar el archivo crontab
+COPY ./php/crontab /etc/crontabs/root
+
 # to execute sudo: sudo -u <my-user> <my command>
 RUN set -ex && apk --no-cache add sudo 
 
