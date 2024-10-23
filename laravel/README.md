@@ -21,7 +21,7 @@ to change between apache or nginx and mysql or mariadb only comment and uncommen
 
 ## deploying with
 
-before deploying iin linuex systems, you need to set the user and uid args to the docker-compose.yml file in php container & artisan container
+before deploying in linux systems, you need to set the user and uid args to the docker-compose.yml file in php container & artisan container
 
 ```
 args:
@@ -29,6 +29,8 @@ args:
     - USER=${USER} (your_user)
 
 ```
+
+- create `app_volume` and `db_volume` folders
 
 ```
 docker-compose up -d --build
