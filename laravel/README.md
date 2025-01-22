@@ -95,6 +95,10 @@ sudo chmod -R 777 \db_volume
     - copy inside the file /etc/crontabs/root with sudo nano : `* * * * * cd /var/www && php artisan schedule:run >> /home/$USER/cron.txt`
     - give permission on the files : `sudo chmod -R 777 /var/www`
 
+# to execute a separate terminal inside the docker compose file containers
+
+`docker exec -it name_container bash`
+
 
 [Docker]:<https://docs.docker.com/>
 [Docker_Compose]:<https://docs.docker.com/compose/>
